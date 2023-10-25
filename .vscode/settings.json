@@ -1,0 +1,37 @@
+{
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "mypy.enabled": true,
+  "mypy.runUsingActiveInterpreter": true,
+  "flake8.path": [
+    ".venv/bin/pflake8"
+  ],
+  "python.defaultInterpreterPath": ".venv/bin/python",
+  "python.analysis.extraPaths": [
+    "./src"
+  ],
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    ".mypy_cache": true,
+    ".pytest_cache": true,
+    ".venv": true,
+    "**/__pycache__": true,
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+}
