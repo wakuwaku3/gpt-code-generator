@@ -1,69 +1,62 @@
-name: "Save precondition indexes from GitHub repositry for generate code"
-description: "コード生成のための前提条件として GitHub リポジトリの情報を Cloud Storage に保存します。"
+name: 'Save precondition indexes from GitHub repositry for generate code'
+description: 'コード生成のための前提条件として GitHub リポジトリの情報を Cloud Storage に保存します。'
 branding:
-  icon: "eye"
-  color: "gray-dark"
+  icon: 'eye'
+  color: 'gray-dark'
 inputs:
-  ACTION_NAME:
-    description: "Action Name"
-    type: choice
-    required: true
-    options:
-      - save-precondition
-      - review
   AZURE_OPEN_AI_KEY:
-    description: "Key of custom Azure Open AI API"
+    description: 'Key of custom Azure Open AI API'
     required: true
   AZURE_OPEN_AI_ENDPOINT:
-    description: "URL of custom Azure Open AI API"
+    description: 'URL of custom Azure Open AI API'
     required: true
   AZURE_OPEN_AI_VERSION:
-    description: "Version of custom Azure Open AI API"
+    description: 'Version of custom Azure Open AI API'
     required: true
   AZURE_OPEN_AI_MODEL_NAME:
-    description: "Model Name of custom Azure Open AI"
+    description: 'Model Name of custom Azure Open AI'
     required: true
   AZURE_OPEN_AI_MODEL_DEPLOY_NAME:
-    description: "Model deploy name of custom Azure Open AI"
+    description: 'Model deploy name of custom Azure Open AI'
     required: true
   AZURE_OPEN_AI_EMBEDDING_MODEL_NAME:
-    description: "Embedding model name of custom Azure Open AI"
+    description: 'Embedding model name of custom Azure Open AI'
     required: true
   AZURE_OPEN_AI_EMBEDDING_MODEL_DEPLOY_NAME:
-    description: "Embedding model deploy name of custom Azure Open AI"
+    description: 'Embedding model deploy name of custom Azure Open AI'
     required: true
   GOOGLE_APPLICATION_CREDENTIALS_JSON:
-    description: "Google Application Credentials JSON"
+    description: 'Google Application Credentials JSON'
     required: true
   GOOGLE_INDEX_BUCKET_NAME:
-    description: "Google Storage Bucket Name"
+    description: 'Google Storage Bucket Name'
     required: true
   GITHUB_OWNER:
-    description: "GitHub Owner. (Default value: ${{ github.repository_owner }})"
+    description: 'GitHub Owner. (Default value: ${{ github.repository_owner }})'
     required: false
-    default: "${GITHUB_REPOSITORY_OWNER}"
+    default: '${GITHUB_REPOSITORY_OWNER}'
   GITHUB_REPO:
-    description: "GitHub Repo. (Default value: ${{ github.repository }})"
+    description: 'GitHub Repo. (Default value: ${{ github.repository }})'
     required: false
-    default: "${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}"
+    default: '${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}'
   GITHUB_TOKEN:
-    description: "GitHub Token. (Default value: ${{ secrets.GITHUB_TOKEN }})"
+    description: 'GitHub Token. (Default value: ${{ secrets.GITHUB_TOKEN }})'
     required: false
-    default: "${{ secrets.GITHUB_TOKEN }}"
+    default: '${{ secrets.GITHUB_TOKEN }}'
   IGNORE_FILE_EXTENSIONS:
-    description: "Ignore file extenstions."
+    description: 'Ignore file extenstions.'
     required: false
   IGNORE_DIRECTORIES:
-    description: "Igenore directories."
+    description: 'Igenore directories.'
     required: false
   GITHUB_BRANCH:
-    description: "GitHub Branch. (Default value: ${{ github.ref_name }})"
+    description: 'GitHub Branch. (Default value: ${{ github.ref_name }})'
     required: false
-    default: "${{ github.ref_name }}"
+    default: '${{ github.ref_name }}'
   GITHUB_COMMIT_SHA:
-    description: "GitHub Commit SHA. (Default value: ${{ github.sha }})"
+    description: 'GitHub Commit SHA. (Default value: ${{ github.sha }})'
     required: false
-    default: "${{ github.sha }}"
+    default: '${{ github.sha }}'
 
 runs:
   using: "composite"
@@ -96,7 +89,7 @@ runs:
         AZURE_OPEN_AI_MODEL_DEPLOY_NAME: ${{ inputs.AZURE_OPEN_AI_MODEL_DEPLOY_NAME }}
         AZURE_OPEN_AI_EMBEDDING_MODEL_NAME: ${{ inputs.AZURE_OPEN_AI_EMBEDDING_MODEL_NAME }}
         AZURE_OPEN_AI_EMBEDDING_MODEL_DEPLOY_NAME: ${{ inputs.AZURE_OPEN_AI_EMBEDDING_MODEL_DEPLOY_NAME }}
-        GOOGLE_APPLICATION_CREDENTIALS_JSON: "${{ inputs.GOOGLE_APPLICATION_CREDENTIALS_JSON }}"
+        GOOGLE_APPLICATION_CREDENTIALS_JSON: '${{ inputs.GOOGLE_APPLICATION_CREDENTIALS_JSON }}'
         GOOGLE_INDEX_BUCKET_NAME: ${{ inputs.GOOGLE_INDEX_BUCKET_NAME }}
         GOOGLE_INDEX_FILE_NAME: ${{ inputs.GOOGLE_INDEX_FILE_NAME }}
         GITHUB_OWNER: ${{ inputs.GITHUB_OWNER }}

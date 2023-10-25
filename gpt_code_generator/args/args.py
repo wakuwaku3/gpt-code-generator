@@ -32,14 +32,14 @@ class Args:
 class GeneratorArgs(Args):
     def __init__(self, args: list[str]) -> None:
         help_message = """
-            Usage: gpt-code-generator [options]
-            Generate code from the prompt with precondition.
+Usage: gpt-code-generator [options]
+Generate code from the prompt with precondition.
 
-            [options]
-            -p, --prompt-file-path <prompt-file-path> [required] Path to the prompt file.
-            -c, --commit-sha <commit_sha>             Commit SHA of the repository to save.
-            -b, --branch <branch>                     Branch of the repository to save.
-            -?, -h, --help                            Print this message.
+[options]
+-p, --prompt-file-path <prompt-file-path> [required] Path to the prompt file.
+-c, --commit-sha <commit_sha>             Commit SHA of the repository to save.
+-b, --branch <branch>                     Branch of the repository to save.
+-?, -h, --help                            Print this message.
             """
         super().__init__(
             args,
@@ -53,7 +53,7 @@ class GeneratorArgs(Args):
             if arg in {"-p", "--prompt-file-path"} and i + 1 < args_count:
                 self.prompt_path = args[i + 1]
 
-        if self.prompt_path:
+        if not self.prompt_path:
             print("Error: prompt-file-path must be specified.", sys.stderr)
             print_help(help_message)
 
@@ -68,13 +68,13 @@ class SaveArgs(Args):
         super().__init__(
             args,
             """
-            Usage: save-code-generating-precondition [options]
-            Save the code generating precondition to Google Cloud Storage.
+Usage: save-code-generating-precondition [options]
+Save the code generating precondition to Google Cloud Storage.
 
-            [options]
-            -c, --commit-sha <commit_sha>  Commit SHA of the repository to save.
-            -b, --branch <branch>          Branch of the repository to save.
-            -?, -h, --help                 Print this message.
+[options]
+-c, --commit-sha <commit_sha>  Commit SHA of the repository to save.
+-b, --branch <branch>          Branch of the repository to save.
+-?, -h, --help                 Print this message.
             """,
         )
 

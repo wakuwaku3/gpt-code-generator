@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List
 
 from llama_index import Document, GithubRepositoryReader
 
@@ -19,7 +19,9 @@ class GitHub:
 
     def get_documents(
         self,
-        commit_sha: Optional[str] = None,
-        branch: Optional[str] = None,
+        commit_sha: str,
+        branch: str,
     ) -> List[Document]:
-        return self.reader.load_data(commit_sha=commit_sha, branch=branch)
+        if commit_sha:
+            return self.reader.load_data(commit_sha=commit_sha)
+        return self.reader.load_data(branch=branch)

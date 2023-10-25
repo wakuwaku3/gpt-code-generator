@@ -11,14 +11,20 @@
       "type": "python",
       "request": "launch",
       "console": "integratedTerminal",
+      // "args": [
+      //   "run",
+      //   "save-code-generating-precondition",
+      //   "-b",
+      //   "main",
+      // ],
       "args": [
         "run",
-        "save-precondition",
-        "d7349790b1574ce1ac39caf524dda46e",
+        "gpt-code-generator",
+        "-b",
+        "main",
+        "-p",
+        "./dist/sample_prompt.md",
       ],
-      // "args": [
-      //   "gpt-code-generator",
-      // ],
       "cwd": "${workspaceFolder}",
       "env": {
         "PYTHONPATH": "${workspaceFolder}",
