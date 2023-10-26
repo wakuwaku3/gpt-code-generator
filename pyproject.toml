@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gpt-code-generator"
-version = "0.0.1"
+version = "0.0.2"
 description = "GPT code generator refer to GitHub repository"
 authors = ["wakuwaku3 <takushi.yokoyama@sansan.com>"]
 readme = "README.md"
