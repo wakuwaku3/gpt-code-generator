@@ -76,14 +76,14 @@ runs:
 
     - name: Save precondition indexes from GitHub repositry for generate code
       shell: bash
-      run: save-code-generating-precondition --commit-sha ${{ inputs.GITHUB_COMMIT_SHA }}
+      run: |
         if [ -n "${{ inputs.GITHUB_COMMIT_SHA }}" ] ; then
           save-code-generating-precondition --commit-sha ${{ inputs.GITHUB_COMMIT_SHA }}
         elif [ -n "${{ inputs.GITHUB_BRANCH }}" ] ; then
           save-code-generating-precondition --branch ${{ inputs.GITHUB_BRANCH }}
         else
           save-code-generating-precondition
-        fi
+        fi        
       env:
         AZURE_OPEN_AI_KEY: ${{ inputs.AZURE_OPEN_AI_KEY }}
         AZURE_OPEN_AI_ENDPOINT: ${{ inputs.AZURE_OPEN_AI_ENDPOINT }}
