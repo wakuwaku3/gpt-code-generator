@@ -1,0 +1,35 @@
+name: Save precondition indexes from GitHub repositry for generate code
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  id-token: write
+  checks: write
+  pull-requests: write
+
+jobs:
+  save:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Auto GPT Review With Preconditions
+        uses: wakuwaku3/gpt-code-generator@v0.0.3
+        with:
+          AZURE_OPEN_AI_KEY: "${{ secrets.AZURE_OPEN_AI_KEY}}"
+          AZURE_OPEN_AI_ENDPOINT: "${{ secrets.AZURE_OPEN_AI_ENDPOINT }}"
+          AZURE_OPEN_AI_VERSION: "2023-05-15"
+          AZURE_OPEN_AI_MODEL_NAME: "gpt-35-turbo"
+          AZURE_OPEN_AI_MODEL_DEPLOY_NAME: "gpt-35-turbo"
+          AZURE_OPEN_AI_EMBEDDING_MODEL_NAME: "text-embedding-ada-002"
+          AZURE_OPEN_AI_EMBEDDING_MODEL_DEPLOY_NAME: "text-embedding-ada-002"
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}"
+          GOOGLE_INDEX_BUCKET_NAME: "${{ secrets.GOOGLE_INDEX_BUCKET_NAME }}"
+          GITHUB_OWNER: wakuwaku3
+          GITHUB_REPO: gpt-code-generator
+          GITHUB_BRANCH: main
+          GITHUB_COMMIT_SHA: ""
+          GITHUB_TOKEN:  "${{ secrets.GITHUB_TOKEN }}"
+          IGNORE_FILE_EXTENSIONS: ".lock"
+          IGNORE_DIRECTORIES: ".github,.devcontainer"
