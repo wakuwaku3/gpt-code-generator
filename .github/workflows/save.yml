@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Auto GPT Review With Preconditions
-        uses: wakuwaku3/gpt-code-generator@v0.0.5
+        uses: wakuwaku3/gpt-code-generator@v0.1.0
         with:
           AZURE_OPEN_AI_KEY: "${{ secrets.AZURE_OPEN_AI_KEY}}"
           AZURE_OPEN_AI_ENDPOINT: "${{ secrets.AZURE_OPEN_AI_ENDPOINT }}"

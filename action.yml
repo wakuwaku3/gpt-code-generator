@@ -75,7 +75,6 @@ runs:
         python -m pip install gpt-code-generator
 
     - name: Save precondition indexes from GitHub repositry for generate code
-      if: ${{ inputs.GITHUB_COMMIT_SHA }} != ""
       shell: bash
       run: save-code-generating-precondition --commit-sha ${{ inputs.GITHUB_COMMIT_SHA }}
         if [ -n "${{ inputs.GITHUB_COMMIT_SHA }}" ] ; then
@@ -85,48 +84,6 @@ runs:
         else
           save-code-generating-precondition
         fi
-      env:
-        AZURE_OPEN_AI_KEY: ${{ inputs.AZURE_OPEN_AI_KEY }}
-        AZURE_OPEN_AI_ENDPOINT: ${{ inputs.AZURE_OPEN_AI_ENDPOINT }}
-        AZURE_OPEN_AI_VERSION: ${{ inputs.AZURE_OPEN_AI_VERSION }}
-        AZURE_OPEN_AI_MODEL_NAME: ${{ inputs.AZURE_OPEN_AI_MODEL_NAME }}
-        AZURE_OPEN_AI_MODEL_DEPLOY_NAME: ${{ inputs.AZURE_OPEN_AI_MODEL_DEPLOY_NAME }}
-        AZURE_OPEN_AI_EMBEDDING_MODEL_NAME: ${{ inputs.AZURE_OPEN_AI_EMBEDDING_MODEL_NAME }}
-        AZURE_OPEN_AI_EMBEDDING_MODEL_DEPLOY_NAME: ${{ inputs.AZURE_OPEN_AI_EMBEDDING_MODEL_DEPLOY_NAME }}
-        GOOGLE_APPLICATION_CREDENTIALS_JSON: '${{ inputs.GOOGLE_APPLICATION_CREDENTIALS_JSON }}'
-        GOOGLE_INDEX_BUCKET_NAME: ${{ inputs.GOOGLE_INDEX_BUCKET_NAME }}
-        GOOGLE_INDEX_FILE_NAME: ${{ inputs.GOOGLE_INDEX_FILE_NAME }}
-        GITHUB_OWNER: ${{ inputs.GITHUB_OWNER }}
-        GITHUB_REPO: ${{ inputs.GITHUB_REPO }}
-        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
-        IGNORE_FILE_EXTENSIONS: ${{ inputs.IGNORE_FILE_EXTENSIONS }}
-        IGNORE_DIRECTORIES: ${{ inputs.IGNORE_DIRECTORIES }}
-
-    - name: Save precondition indexes from GitHub repositry for generate code
-      if: ${{ inputs.GITHUB_BRANCH }} != ""
-      shell: bash
-      run: save-code-generating-precondition --branch ${{ inputs.GITHUB_BRANCH }}
-      env:
-        AZURE_OPEN_AI_KEY: ${{ inputs.AZURE_OPEN_AI_KEY }}
-        AZURE_OPEN_AI_ENDPOINT: ${{ inputs.AZURE_OPEN_AI_ENDPOINT }}
-        AZURE_OPEN_AI_VERSION: ${{ inputs.AZURE_OPEN_AI_VERSION }}
-        AZURE_OPEN_AI_MODEL_NAME: ${{ inputs.AZURE_OPEN_AI_MODEL_NAME }}
-        AZURE_OPEN_AI_MODEL_DEPLOY_NAME: ${{ inputs.AZURE_OPEN_AI_MODEL_DEPLOY_NAME }}
-        AZURE_OPEN_AI_EMBEDDING_MODEL_NAME: ${{ inputs.AZURE_OPEN_AI_EMBEDDING_MODEL_NAME }}
-        AZURE_OPEN_AI_EMBEDDING_MODEL_DEPLOY_NAME: ${{ inputs.AZURE_OPEN_AI_EMBEDDING_MODEL_DEPLOY_NAME }}
-        GOOGLE_APPLICATION_CREDENTIALS_JSON: '${{ inputs.GOOGLE_APPLICATION_CREDENTIALS_JSON }}'
-        GOOGLE_INDEX_BUCKET_NAME: ${{ inputs.GOOGLE_INDEX_BUCKET_NAME }}
-        GOOGLE_INDEX_FILE_NAME: ${{ inputs.GOOGLE_INDEX_FILE_NAME }}
-        GITHUB_OWNER: ${{ inputs.GITHUB_OWNER }}
-        GITHUB_REPO: ${{ inputs.GITHUB_REPO }}
-        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
-        IGNORE_FILE_EXTENSIONS: ${{ inputs.IGNORE_FILE_EXTENSIONS }}
-        IGNORE_DIRECTORIES: ${{ inputs.IGNORE_DIRECTORIES }}
-
-    - name: Save precondition indexes from GitHub repositry for generate code
-      if: ${{ inputs.GITHUB_COMMIT_SHA }} != "" && ${{ inputs.GITHUB_BRANCH }} != ""
-      shell: bash
-      run: save-code-generating-precondition
       env:
         AZURE_OPEN_AI_KEY: ${{ inputs.AZURE_OPEN_AI_KEY }}
         AZURE_OPEN_AI_ENDPOINT: ${{ inputs.AZURE_OPEN_AI_ENDPOINT }}
