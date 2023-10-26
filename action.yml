@@ -80,8 +80,8 @@ runs:
     - name: Save precondition indexes from GitHub repositry for generate code
       shell: bash
       run: |
-          save-code-generating-precondition ${{ inputs.GITHUB_COMMIT_SHA && ' --commit-sha ' + inputs.GITHUB_COMMIT_SHA }} ${{ inputs.GITHUB_BRANCH && ' --branch ' + inputs.GITHUB_BRANCH }}
-        env:
+        save-code-generating-precondition ${{ inputs.GITHUB_COMMIT_SHA && ' --commit-sha ' + inputs.GITHUB_COMMIT_SHA }} ${{ inputs.GITHUB_BRANCH && ' --branch ' + inputs.GITHUB_BRANCH }}
+      env:
         AZURE_OPEN_AI_KEY: ${{ inputs.AZURE_OPEN_AI_KEY }}
         AZURE_OPEN_AI_ENDPOINT: ${{ inputs.AZURE_OPEN_AI_ENDPOINT }}
         AZURE_OPEN_AI_VERSION: ${{ inputs.AZURE_OPEN_AI_VERSION }}
