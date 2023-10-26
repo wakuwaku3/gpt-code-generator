@@ -50,13 +50,11 @@ inputs:
     description: 'Igenore directories.'
     required: false
   GITHUB_BRANCH:
-    description: 'GitHub Branch. (Default value: ${{ github.ref_name }})'
+    description: 'GitHub Branch.'
     required: false
-    default: '${{ github.ref_name }}'
   GITHUB_COMMIT_SHA:
-    description: 'GitHub Commit SHA. (Default value: ${{ github.sha }})'
+    description: 'GitHub Commit SHA.'
     required: false
-    default: '${{ github.sha }}'
 
 runs:
   using: "composite"
