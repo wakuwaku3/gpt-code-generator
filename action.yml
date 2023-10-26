@@ -32,17 +32,16 @@ inputs:
     description: 'Google Storage Bucket Name'
     required: true
   GITHUB_OWNER:
-    description: 'GitHub Owner. (Default value: ${{ github.repository_owner }})'
+    description: 'GitHub Owner. (Default value: github.repository_owner )'
     required: false
     default: '${GITHUB_REPOSITORY_OWNER}'
   GITHUB_REPO:
-    description: 'GitHub Repo. (Default value: ${{ github.repository }})'
+    description: 'GitHub Repo. (Default value: github.repository )'
     required: false
     default: '${GITHUB_REPOSITORY#${GITHUB_REPOSITORY_OWNER}/}'
   GITHUB_TOKEN:
-    description: 'GitHub Token. (Default value: ${{ secrets.GITHUB_TOKEN }})'
+    description: 'GitHub Token. (Default value: secrets.GITHUB_TOKEN )'
     required: false
-    default: '${{ secrets.GITHUB_TOKEN }}'
   IGNORE_FILE_EXTENSIONS:
     description: 'Ignore file extenstions.'
     required: false
@@ -78,7 +77,13 @@ runs:
     - name: Save precondition indexes from GitHub repositry for generate code
       shell: bash
       run: |
-        save-code-generating-precondition ${{ inputs.GITHUB_COMMIT_SHA && ' --commit-sha ' + inputs.GITHUB_COMMIT_SHA }} ${{ inputs.GITHUB_BRANCH && ' --branch ' + inputs.GITHUB_BRANCH }}
+        if [ -n "${{ inputs.GITHUB_COMMIT_SHA }}" ] ; then
+          save-code-generating-precondition --commit-sha ${{ inputs.GITHUB_COMMIT_SHA }}
+        elif [ -n "${{ inputs.GITHUB_BRANCH }}" ] ; then
+          save-code-generating-precondition --branch ${{ inputs.GITHUB_BRANCH }}
+        else
+          save-code-generating-precondition
+        fi
       env:
         AZURE_OPEN_AI_KEY: ${{ inputs.AZURE_OPEN_AI_KEY }}
         AZURE_OPEN_AI_ENDPOINT: ${{ inputs.AZURE_OPEN_AI_ENDPOINT }}
